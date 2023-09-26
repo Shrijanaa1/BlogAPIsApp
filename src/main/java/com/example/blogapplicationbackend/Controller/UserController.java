@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -22,6 +23,11 @@ public class UserController {
     public ResponseEntity<UserModel> createUser(@Valid @RequestBody UserModel userModel){
         UserModel userCreated= userService.addUser(userModel);
         return new ResponseEntity<>(userCreated, HttpStatus.CREATED);
+    }
+
+    @PostConstruct
+    public void addAdmin(){
+        userService.initUser();
     }
 
 //  update user

@@ -67,12 +67,21 @@ public class UserServiceImplementation implements UserService{
         return usertousermodel(user);
     }
 
+    //List of user converted into list of dto or model
     @Override
     public List<UserModel> getAllUsers() {
         List<User> users=repository.findAll();
         List<UserModel> userModels=users.stream().map(user->this.usertousermodel(user)).collect(Collectors.toList());
         return userModels;
 
+    }
+
+    @Override
+    public void initUser() {
+        User user = new User();
+        user.setName("shrijana");
+        user.setPassword(passwordEncoder.encode("shrijana"));
+        repository.save(user);
     }
 
     public User usermodeltouser(UserModel model){

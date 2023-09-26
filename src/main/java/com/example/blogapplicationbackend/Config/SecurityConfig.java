@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.
                 csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers("api/v1/auth/**").permitAll()
+                .antMatchers("/login").permitAll()
                 .antMatchers(HttpMethod.GET).permitAll()
                 .anyRequest()
                 .authenticated()
@@ -55,12 +55,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder()
     {
-        return NoOpPasswordEncoder.getInstance();
+//        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
-    //    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService();
-//    }
+
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {

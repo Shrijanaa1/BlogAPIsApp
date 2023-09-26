@@ -8,7 +8,6 @@ import lombok.Setter;
 public class CommentModel {
 
     private Long id;
-
     private String content;
 
 }

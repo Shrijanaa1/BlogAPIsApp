@@ -13,4 +13,6 @@ public interface UserService {
     public void deleteUserById(Long id);
     public UserModel getUserById(Long id);
     public List<UserModel> getAllUsers();
+
+    void initUser();
 }
